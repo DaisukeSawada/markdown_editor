@@ -8,6 +8,14 @@ class FileManager {
       resolve();
     });
   }
+
+  readFile(filePath) {
+    return new Promise((resolve) => {
+      const text = fs.readFileSync(filePath, "utf8");
+      this.filePath = filePath;
+      resolve(text);
+    });
+  }
 }
 
 function createFileManager() {
