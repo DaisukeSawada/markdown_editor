@@ -1,8 +1,11 @@
 import fs from "fs";
 
 class FileManager {
+  constructor() {
+    this.filePath = "";
+  }
 
- saveFile(filePath, text) {
+  saveFile(filePath, text) {
     return new Promise((resolve) => {
       fs.writeFileSync(filePath, text);
       resolve();
@@ -14,6 +17,12 @@ class FileManager {
       const text = fs.readFileSync(filePath, "utf8");
       this.filePath = filePath;
       resolve(text);
+    });
+  }
+
+  overwriteFile(text) {
+    return new Promise((resolve) => {
+      this.saveFile(this.filePath, text).then(resolve());
     });
   }
 }
