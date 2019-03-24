@@ -25,6 +25,13 @@ class FileManager {
       this.saveFile(this.filePath, text).then(resolve());
     });
   }
+
+  writePdf(filePath, pdf) {
+    return new Promise((resolve) => {
+      fs.writeFileSync(filePath, pdf);
+      resolve();
+    });
+  }
 }
 
 function createFileManager() {
